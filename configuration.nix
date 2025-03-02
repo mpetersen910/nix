@@ -110,17 +110,65 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    # Basic utilities
-    vim
-    wget
-    git
+    
+    # Languages
+    jdk21
+    go
+    ocaml
+    ocamlPackages.findlib
+    ocamlPackages.dune
+    pkgs.rustup
+    gcc
+    clang
+    python3 
   
     # Development tools
     vscode
-    gcc
-  
+    neovim
+    vim-plugins.nvim-lspconfig
+    vim
+
+    # Build Tools
+    gnumake
+    cmake
+    maven
+    ninja
+    cargo
+    go-tools
+
     # Applications
     chromium
+
+    # Essential Development Libraries
+    openssl
+    openssl.dev
+    zlib
+    zlib.dev
+    pkg-config
+    libclang
+    curl
+    sqlite
+    readline
+
+    # System Utilities
+    coreutils
+    findutils
+    gnutar
+    gnused
+    gnugrep
+    gawk
+    git
+    wget
+    htop
+    ripgrep
+    fd
+    bat
+    exa
+
+    # ASCII
+    cmatrix
+
+
   ];
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
