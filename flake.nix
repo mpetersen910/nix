@@ -16,6 +16,8 @@
       modules = [
         # Reference the system configuration
         ./configuration.nix
+        # Add the hardware configuration here
+        ./hardware-configuration.nix
         home-manager.nixosModules.home-manager {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
