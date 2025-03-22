@@ -1,0 +1,10 @@
+# Create a directory for stable symlinks
+mkdir -p ~/.local/bin/ocaml-tools
+
+# Create symlinks to actual binaries
+ln -s $(which ocaml) ~/.local/bin/ocaml-tools/ocaml
+ln -s $(which opam) ~/.local/bin/ocaml-tools/opam
+ln -s $(which dune) ~/.local/bin/ocaml-tools/dune
+
+# Add to your PATH if not already there
+echo 'export PATH="$HOME/.local/bin/ocaml-tools:$PATH"' >> ~/.bashrc  # or ~/.zshrc

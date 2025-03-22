@@ -150,6 +150,8 @@
     jdk21
     go
     go-tools
+    nodejs
+    nodePackages.rescript
     
     # Rust tools (consolidated)
     rustup
@@ -299,6 +301,15 @@
   environment.variables = {
     RUST_SRC_PATH = "${pkgs.rustPlatform.rustLibSrc}";
   };
+
+  # In your configuration.nix or home.nix
+  environment.shellAliases = {
+    "ocaml-idea" = ''
+      PATH="${pkgs.ocaml}/bin:${pkgs.opam}/bin:${pkgs.dune_3}/bin:$PATH" intellij-idea-ultimate
+    '';
+
+
+};
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
