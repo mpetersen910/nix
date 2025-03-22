@@ -169,6 +169,7 @@ in
     ocamlPackages.utop
     ocamlPackages.merlin
     ocamlPackages.ocaml-lsp
+    ocamlPackages.opam
 
     # C/C++ tools
     gcc
