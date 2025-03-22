@@ -2,14 +2,10 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running 'nixos-help').
 
-{ config, pkgs, ... }:
 
-let
-  unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
-in
+{ config, pkgs, unstable ? pkgs, ... }:
 {
   imports = [ 
-    ./hardware-configuration.nix 
   ];
 
   # Nix features
@@ -169,7 +165,7 @@ in
     ocamlPackages.utop
     ocamlPackages.merlin
     ocamlPackages.ocaml-lsp
-    ocamlPackages.opam
+    opam
 
     # C/C++ tools
     gcc
