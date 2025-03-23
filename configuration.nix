@@ -151,7 +151,6 @@
     go
     go-tools
     nodejs
-    nodePackages.rescript
     
     # Rust tools (consolidated)
     rustup
@@ -302,13 +301,24 @@
     RUST_SRC_PATH = "${pkgs.rustPlatform.rustLibSrc}";
   };
 
-  # In your configuration.nix or home.nix
-  environment.shellAliases = {
-    "ocaml-idea" = ''
-      PATH="${pkgs.ocaml}/bin:${pkgs.opam}/bin:${pkgs.dune_3}/bin:$PATH" intellij-idea-ultimate
-    '';
+environment.shellAliases = {
+  "ocaml-idea" = ''
+    PATH="${pkgs.ocaml}/bin:${pkgs.opam}/bin:${pkgs.dune_3}/bin:$PATH" jetbrains-toolbox
+  '';
+};
 
-
+system.activationScripts.ocamlSetup = {
+  deps = [];
+  text = ''
+    mkdir -p /home/${config.users.users.mpete.name}/ocaml-bin
+    ln -sf ${pkgs.ocaml}/bin/ocaml /home/${config.users.users.mpete.name}/ocaml-bin/ocaml
+    ln -sf ${pkgs.opam}/bin/opam /home/${config.users.users.mpete.name}/ocaml-bin/opam
+    ln -sf ${pkgs.ocamlPackages.dune_3}/bin/dune /home/${config.users.users.mpete.name}/ocaml-bin/dune
+    ln -sf ${pkgs.ocamlPackages.merlin}/bin/ocamlmerlin /home/${config.users.users.mpete.name}/ocaml-bin/ocamlmerlin
+    ln -sf ${pkgs.ocamlPackages.findlib}/bin/ocamlfind /home/${config.users.users.mpete.name}/ocaml-bin/ocamlfind
+    ln -sf ${pkgs.ocamlPackages.ocaml-lsp}/bin/ocamllsp /home/${config.users.users.mpete.name}/ocaml-bin/ocamllsp
+    chown -R ${config.users.users.mpete.name}:users /home/${config.users.users.mpete.name}/ocaml-bin
+  '';
 };
 
   # This value determines the NixOS release from which the default

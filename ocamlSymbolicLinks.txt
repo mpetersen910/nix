@@ -1,10 +1,24 @@
+#!/bin/bash
+
+# Create ocaml-bin directory if it doesn't exist
+mkdir -p ~/ocaml-bin
+
+# Remove old symlinks if they exist
+rm -f ~/ocaml-bin/ocaml ~/ocaml-bin/opam ~/ocaml-bin/dune ~/ocaml-bin/ocamlmerlin ~/ocaml-bin/ocamlfind ~/ocaml-bin/ocamllsp
+
+
 # Create a directory for stable symlinks
 mkdir -p ~/.local/bin/ocaml-tools
 
 # Create symlinks to actual binaries
-ln -s $(which ocaml) ~/.local/bin/ocaml-tools/ocaml
-ln -s $(which opam) ~/.local/bin/ocaml-tools/opam
-ln -s $(which dune) ~/.local/bin/ocaml-tools/dune
+ln -s $(which ocaml) ~/ocaml-bin/ocaml
+ln -s $(which opam) ~/ocaml-bin/opam
+ln -sf $(which dune) ~/ocaml-bin/dune
+ln -sf $(which ocamlmerlin) ~/ocaml-bin/ocamlmerlin
+ln -sf $(which ocamlfind) ~/ocaml-bin/ocamlfind
+ln -sf $(which ocamllsp) ~/ocaml-bin/ocamllsp
+
 
 # Add to your PATH if not already there
-echo 'export PATH="$HOME/.local/bin/ocaml-tools:$PATH"' >> ~/.bashrc  # or ~/.zshrc
+export PATH="$HOME/ocaml-bin:$PATH"
+
